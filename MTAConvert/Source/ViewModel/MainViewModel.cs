@@ -5,7 +5,7 @@ using Prism.Mvvm;
 using System;
 using System.Windows;
 
-namespace MTAConvert.Source.ViewModel
+namespace MTAConvert.ViewModel
 {
     public class MainViewModel : BindableBase
     {
