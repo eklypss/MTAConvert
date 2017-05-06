@@ -11,6 +11,9 @@ namespace MTAConvert.Converter
     {
         private static Logger _logger = LogManager.GetCurrentClassLogger();
 
+        /// <summary>
+        /// Converts the MTASA map to PAWN code.
+        /// </summary>
         public async Task<string> ConvertMap(string mapSource, ConvertType convertType, VehicleSpawnType vehicleSpawnType, bool convertVehicles, bool convertObjects, bool convertRemovedObjects, float streamDistance, float drawDistance, bool addComments)
         {
             try
@@ -24,6 +27,7 @@ namespace MTAConvert.Converter
                         {
                             if (reader.LocalName.StartsWith("<map")) continue;
 
+                            // Object element
                             if (reader.LocalName == "object")
                             {
                                 if (!convertObjects) break;
@@ -44,6 +48,7 @@ namespace MTAConvert.Converter
                                 }
                             }
 
+                            // Vehicle element
                             if (reader.LocalName == "vehicle")
                             {
                                 if (!convertVehicles) break;
@@ -70,6 +75,7 @@ namespace MTAConvert.Converter
                                 }
                             }
 
+                            // Removed object element
                             if (reader.LocalName == "removeWorldObject")
                             {
                                 if (!convertRemovedObjects) break;
