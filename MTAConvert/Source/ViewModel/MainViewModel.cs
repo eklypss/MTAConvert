@@ -136,6 +136,9 @@ namespace MTAConvert.ViewModel
             }
         }
 
+        /// <summary>
+        /// Determines whether <see cref="Convert"/> can be executed based on settings defined by user.
+        /// </summary>
         public bool CanConvert
         {
             get
@@ -145,26 +148,41 @@ namespace MTAConvert.ViewModel
             }
         }
 
+        /// <summary>
+        /// Determines whether <see cref="ConvertedText"/> can be copied to clipboard with <see cref="Copy"/> or not.
+        /// </summary>
         public bool CanCopy
         {
             get { return !string.IsNullOrWhiteSpace(ConvertedText); }
         }
 
+        /// <summary>
+        /// Copies <see cref="ConvertedText"/> to clipboard for easy copy-pasting.
+        /// </summary>
         private void Copy()
         {
             Clipboard.SetText(ConvertedText);
         }
 
+        /// <summary>
+        /// TODO: Allow user to select a .map file instead of copy-pasting the source using OpenFileDialog.
+        /// </summary>
         private void Browse()
         {
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Calls <see cref="MapConverter"/> and attempts to convert the map given in <see cref="TextToConvert"/> and sets <see cref="ConvertedText"/> as the result.
+        /// </summary>
         private async void Convert()
         {
             ConvertedText = await MapConverter.ConvertMap(TextToConvert, ConvertType, VehicleSpawnType, ConvertVehicles, ConvertObjects, ConvertRemovedObjects, StreamDistance, DrawDistance, AddComments);
         }
 
+        /// <summary>
+        /// Gets <see cref="ConvertType"/> for the specified index.
+        /// </summary>
         public ConvertType GetConvertTypeFromIndex(int index)
         {
             switch (index)
@@ -176,6 +194,9 @@ namespace MTAConvert.ViewModel
             }
         }
 
+        /// <summary>
+        /// Gets <see cref="VehicleSpawnType"/> for the specified index.
+        /// </summary>
         public VehicleSpawnType GetVehicleSpawnTypeFromIndex(int index)
         {
             switch (index)
