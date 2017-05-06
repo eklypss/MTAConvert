@@ -35,8 +35,6 @@ namespace MTAConvert.Source.ViewModel
             CopyCommand = new RelayCommand(Copy);
         }
 
-        #region Notifiers / binding properties
-
         public bool ConvertObjects
         {
             get { return _convertObjects; }
@@ -152,10 +150,6 @@ namespace MTAConvert.Source.ViewModel
             get { return !string.IsNullOrWhiteSpace(ConvertedText); }
         }
 
-        #endregion Notifiers / binding properties
-
-        #region Commands
-
         private void Copy()
         {
             Clipboard.SetText(ConvertedText);
@@ -170,10 +164,6 @@ namespace MTAConvert.Source.ViewModel
         {
             ConvertedText = await MapConverter.ConvertMap(TextToConvert, ConvertType, VehicleSpawnType, ConvertVehicles, ConvertObjects, ConvertRemovedObjects, StreamDistance, DrawDistance, AddComments);
         }
-
-        #endregion Commands
-
-        #region Converters
 
         public ConvertType GetConvertTypeFromIndex(int index)
         {
@@ -197,7 +187,5 @@ namespace MTAConvert.Source.ViewModel
                 default: return VehicleSpawnType.NotSet;
             }
         }
-
-        #endregion Converters
     }
 }
