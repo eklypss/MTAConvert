@@ -87,11 +87,15 @@ namespace MTAConvert.Converter
                 }
                 return resultString;
             }
-            catch (Exception ex)
+            catch (XmlException xmlException)
             {
-                _logger.Error($"Error occured during conversion: {ex.Message}.");
-                _logger.Error($"{ex.Source} {ex.StackTrace}");
-                return ex.Message;
+                _logger.Error($"Conversion failed: {xmlException.Message}.");
+                _logger.Error($"StackTrace: {xmlException.StackTrace} {Environment.NewLine} Source: {xmlException.Source}");
+            }
+            catch
+            {
+                _logger.Error($"Error occured during conversion.");
+                throw;
             }
             finally
             {
