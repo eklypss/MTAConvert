@@ -91,10 +91,12 @@ namespace MTAConvert.Converter
             {
                 _logger.Error($"Conversion failed: {xmlException.Message}.");
                 _logger.Error($"StackTrace: {xmlException.StackTrace} {Environment.NewLine} Source: {xmlException.Source}");
+                return $"Conversion failed: {xmlException.Message}.";
             }
             catch
             {
-                _logger.Error($"Error occured during conversion.");
+                _logger.Error($"Unknown error occured during conversion.");
+                return "Unknown error occured during conversion";
                 throw;
             }
             finally
